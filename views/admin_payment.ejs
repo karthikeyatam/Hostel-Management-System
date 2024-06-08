@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Records</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #e3e4ff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .back-icon {
+            display: inline-block;
+            margin: 10px;
+            padding: 5px;
+            color: #5b9bd5; /* Blue accent color */
+            font-size: 24px; /* Larger icon size */
+            text-decoration: none; /* Remove underline from link */
+        }
+        .back-icon:hover {
+            color: #4a7eb5; /* Darker blue on hover */
+        }
+        #searchInput {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 250px; /* Slightly less than 100% to fit padding */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="javascript:history.back()" class="back-icon" title="Go back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Payment Records</h1>
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search" title="Type in a name">
+        <table id="paymentTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Year</th>
+                    <th>Hostel</th>
+                    <th>Amount Paid</th>
+                    <th>Branch</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% payment.forEach(function(payment) { %>
+                    <tr>
+                        <td><%= payment.Fullname %></td>
+                        <td><%= payment.year %></td>
+                        <td><%= payment.Hostel %></td>
+                        <td><%= payment.amount %></td>
+                        <td><%= payment.Branch %></td>
+                        <td><%= payment.phone %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("paymentTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; 
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

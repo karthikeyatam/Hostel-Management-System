@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+        }
+
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+        .icon {
+            margin-right: 10px;
+        }
+        inventory {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Spacing between cards */
+            justify-content: center; /* Center cards in the container */
+            padding: 20px;
+        }
+
+        .inventory-item {
+            background-color: white; /* Card background */
+            border: none; /* Remove border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            width: 200px; /* Fixed card width */
+            text-align: center; /* Center text */
+        }
+
+        .inventory-title {
+            display: block; /* Make title a block element */
+            margin-bottom: 10px; /* Space below title */
+            font-weight: bold; /* Bold title */
+            color: #333; /* Title color */
+        }
+        .edit-button {
+            background-color: #6a1b9a; /* Green background */
+            color: white; /* White text */
+            padding: 8px 16px; /* Padding */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background 0.3s; /* Smooth background transition */
+            margin-top: 10px; /* Space above the button */
+        }
+
+        .edit-button:hover {
+            background-color: #7e57c2; /* Lighter green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/admin/complaint"><span class="icon">📝</span>Complaints</a>
+            <a href="/admin/mess"><span class="icon">🍽️</span> Edit Mess</a>
+            <a href="/admin/view"><span class="icon">🔍</span>View Students</a>
+            <a href="/admin/payment"><span class="icon">💰</span>View Payments</a>
+            <a href="/admin/notice"><span class="icon">📢</span>Add Notices</a>
+            <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+            Hostel Manager(Admin)
+            <br><br><br>
+                <div class="inventory">
+                    <div class="inventory-item">
+                        <span class="inventory-title">Beds:</span>
+                        <span>50</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Chairs:</span>
+                        <span>100</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Rooms:</span>
+                        <span>25</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Visitors Today:</span>
+                        <span>5</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                </div>
+                <!-- ... other main content ... -->
+            </div>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

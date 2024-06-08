@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hostel Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+  }
+  .navbar {
+    background-color: #5b3c88;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  .navbar a:hover, .navbar a:focus {
+    background-color: #4a3170;
+  }
+  .brand-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .navbar-links {
+    display: flex;
+  }
+  .header {
+    background: url('header-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  .header p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  .header button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #5b3c88;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .header button:hover {
+    background-color: #4a3170;
+  }
+  .footer {
+    background-color: #5b3c88;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+  }
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown:hover .dropbtn {
+    background-color: #4a3170;
+  }
+  .dropbtn {
+  background-color: #5b3c88;
+  color: white;
+  padding: 0.75rem 1.5rem; /* Even padding on all sides */
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center; /* Center the text inside the button */
+  display: inline-block; /* Allows the use of text-align */
+  width: 100%; /* Makes the button stretch to fill its container */
+}
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand-title">Hostel Manager</div>
+    <div class="navbar-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Login</a>
+        <div class="dropdown-content">
+          <a href="/admin"> Admin</a>
+          <a href="/student">Student</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div>
+      <h1>Welcome to Management Service</h1>
+      <p>Explore innovation and expertise with us.</p>
+      <button>Contact Us</button>
+    </div>
+  </header>
+
+  <div class="footer">
+    © 2024 Company Name. All rights reserved.
+  </div>
+</body>
+</html>
