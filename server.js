@@ -7,6 +7,9 @@ const mongoose=require('mongoose')
 const multer=require('multer')
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+const puppeteer=require('puppeteer')
+const pdf = require('html-pdf');
+const path = require('path');
 const session=require('express-session')
 const { MongoNetworkError } = require('mongodb')
 const { defaultMaxListeners } = require('nodemailer/lib/xoauth2')
@@ -101,6 +104,12 @@ const resolved_schema=mongoose.Schema({
   Room:String
 })
 
+const order_schema=mongoose.Schema({
+  admin_id:mongoose.Schema.Types.ObjectId,
+  item:String,
+  quantity:String
+})
+
 //creating models
 const Student=mongoose.model('Student',student_schema)
 const Admin=mongoose.model('Admin',admin_schema)
@@ -109,6 +118,7 @@ const Mess =mongoose.model('Mess',mess_schema)
 const Notice=mongoose.model('Notice',notice_schema)
 const Payment=mongoose.model('Payment',payment_schema)
 const Resolved=mongoose.model("Resolved",resolved_schema)
+const Order=mongoose.model('Order',order_schema)
 
 //multer Configuration
 //Memory Storage
@@ -233,12 +243,14 @@ app.get('/student/payment',isAuthenticated,(req,res)=>{
 app.post('/student/payment', isAuthenticated,async(req, res) => {
   try {
     const student = await Student.findOne({ _id: req.session.user._id });
+    const { fullname, roomNumber, hostel, phone } = req.body;
     if (student) {
       const year = student.year;
       const Branch = student.Branch;
       const fee = 30000;
+      const user_id= req.session.user._id
       const new_pay = new Payment({
-        user_id: req.session.user._id,
+        user_id:user_id,
         amount: fee,
         Fullname: req.body.fullname,
         phone: req.body.phone,
@@ -247,14 +259,46 @@ app.post('/student/payment', isAuthenticated,async(req, res) => {
         Branch: Branch
       });
       await new_pay.save()
-      res.render('../views/student_pay', { message: "Payment Successful!" })
-    } else {
-      res.status(404).send("Student not found")
+
+    //for sending the student the payment invoice
+      const content = {
+        user_id:user_id,
+        fullname: fullname,
+        roomNumber: roomNumber,
+        hostel: hostel,
+        phone: phone,
+        Branch:Branch,
+        year:year,
+        fee:fee
+    }
+
+    //use html-pdf library 
+
+    ejs.renderFile(path.join(__dirname, './views/invoice.ejs'), content, (err, html) => {
+      if (err) {
+        console.error(err);
+        return res.send('An error occurred');
+      }
+      pdf.create(html).toBuffer((err, buffer) => {
+        if (err) {
+          console.error(err);
+          return res.send('An error occurred');
+        }
+        // Send the PDF as a download
+        res.type('pdf');
+        res.end(buffer, 'binary');
+      });
+    });
+    }
+
+    else {
+      res.status(404).send("Student not found!")
     }
   }
+
    catch (err) {
     console.error(err);
-    res.status(500).send("An error occurred during payment processing");
+    res.status(500).send("An error occurred during payment processing!!");
   }
 });
 
@@ -264,6 +308,7 @@ app.get('/admin/payment',isAuthenticated, async(req,res)=> {
     res.render('admin_payment',{payment:data})
   })
 })
+
 //student mess
 app.get('/student/mess',isAuthenticated,async(req,res)=>{
   await Mess.find().then((data)=>{
@@ -318,6 +363,15 @@ app.get('/admin/view',isAuthenticated, async (req, res) => {
       res.status(500).send('Error searching for students.');
   }
 });
+
+//admin add inventory
+app.post('/admin/addinventory',isAuthenticated,async(req,res)=>{
+     const new_order=new Order({
+        item:req.body.itemName,
+        quantity:req.body.itemQuantity
+     })
+     new_order.save();
+})
 
 //admin add notice route
 app.get('/admin/notice',isAuthenticated,(req,res)=>{
