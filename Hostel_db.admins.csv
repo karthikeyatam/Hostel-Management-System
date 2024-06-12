@@ -1,0 +1,6 @@
+_id,username,password,Designation,Hostel,phone
+665ffaf75e08491cb44b2676,admin1,123,Superintendent,A,987-654-3210
+665ffaf75e08491cb44b2677,admin2,securepass456,Warden,B,987-654-3211
+665ffaf75e08491cb44b2678,admin3,mypassword789,Assistant Warden,C,987-654-3212
+665ffaf75e08491cb44b2679,admin4,adminpass321,Caretaker,D,987-654-3213
+665ffaf75e08491cb44b267a,admin5,strongpassword654,Matron,E,987-654-3214
