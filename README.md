@@ -7,4 +7,11 @@ Tech Stack:
 Downlaod the ZIP file and extract the files
 
 Downlaod necessary Packages and run the command
-  npm i
+
+npm i
+
+Replace the mongodb connection String With yours
+and now run by 
+
+* npm start
+*  
