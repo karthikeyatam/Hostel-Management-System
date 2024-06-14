@@ -7,7 +7,6 @@ const mongoose=require('mongoose')
 const multer=require('multer')
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-const puppeteer=require('puppeteer')
 const pdf = require('html-pdf');
 const path = require('path');
 const session=require('express-session')
@@ -23,7 +22,7 @@ app.use(express.static('views'));
 
 //sessions store
 const store = new MongoDBStore({
-    uri: 'mongodb+srv://helloadimin:iamadmin@cluster0.vhj12nj.mongodb.net/Hostel_db',
+    uri: 'mongodb://127.0.0.1:27017/Hostel_db',
     collection: 'mySessions'
   });
   app.use(session({
@@ -171,6 +170,14 @@ app.post('/student',async(req,res)=>{
      }
 })
 
+app.get('/student/notice',isAuthenticated,(req,res)=>{
+  Notice.find()
+  .then(images => {
+   res.render('stud_board', { images });
+ })
+ .catch(err => res.status(500).send(err));
+})
+
 //student profile route
 app.get('/student/profile',isAuthenticated,async(req,res)=>{
    await Student.findOne({_id:req.session.user._id}).then((data)=>{
@@ -241,6 +248,7 @@ app.get('/student/payment',isAuthenticated,(req,res)=>{
 })
 
 app.post('/student/payment', isAuthenticated,async(req, res) => {
+
   try {
     const student = await Student.findOne({ _id: req.session.user._id });
     const { fullname, roomNumber, hostel, phone } = req.body;
@@ -284,7 +292,7 @@ app.post('/student/payment', isAuthenticated,async(req, res) => {
           console.error(err);
           return res.send('An error occurred');
         }
-        // Send the PDF as a download
+        
         res.type('pdf');
         res.end(buffer, 'binary');
       });
