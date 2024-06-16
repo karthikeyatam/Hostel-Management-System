@@ -65,9 +65,10 @@
         .icon {
             margin-right: 10px;
         }
-        inventory {
+        .inventory {
             display: flex;
             flex-wrap: wrap;
+            flex: 1;
             gap: 20px; /* Spacing between cards */
             justify-content: center; /* Center cards in the container */
             padding: 20px;
@@ -103,6 +104,42 @@
         .edit-button:hover {
             background-color: #7e57c2; /* Lighter green on hover */
         }
+        .add-inventory-form {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-inventory-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-inventory-form input[type="text"],
+.add-inventory-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-inventory-form input[type="submit"] {
+    width: auto;
+    cursor: pointer;
+}
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.add-inventory-form-container {
+    flex: 1; /* Allows form container to grow and fill available space */
+    margin-left: 20px; /* Adds space between the inventory and the form */
+    margin-right:30px;
+    margin-bottom: 5px;
+}
     </style>
 </head>
 <body>
@@ -116,9 +153,11 @@
             <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
         </div>
         <div class="main-content">
-            Hostel Manager(Admin)
+          <h2>  Hostel Manager(Admin)</h2>
             <br><br><br>
+            <div class="content-flex-container">
                 <div class="inventory">
+               
                     <div class="inventory-item">
                         <span class="inventory-title">Beds:</span>
                         <span>50</span><br>
@@ -143,6 +182,19 @@
                         <button class="edit-button">Edit</button>
                     </div>
                 </div>
+                <div class="add-inventory-form-container">
+                    <h2>Order New Inventory</h2>
+                    <form action="/admin/addinventory" method="POST" class="add-inventory-form">
+                        <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" name="itemName" required><br><br>
+                    
+                    <label for="item-quantity">Quantity:</label>
+                    <input type="number" id="item-quantity" name="itemQuantity" required><br><br>
+                    
+                    <input type="submit" value="Place Order" class="edit-button">
+                    </form>
+                </div>
+            </div>
                 <!-- ... other main content ... -->
             </div>
         </div>
