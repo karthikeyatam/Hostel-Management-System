@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif; /* Use a professional font */
+            background-color: #f4f4f9;
+        }
+        html, body {
+          width: 100%;
+          overflow-x: hidden;
+        }
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+            position: fixed; /* Make sidebar fixed */
+            height: 100vh; /* Full height */
+            overflow-y: auto; /* Enable scrolling if content is too long */
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+            margin-left: 250px;
+        }
+
+        /* Logout button styles */
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+
+        /* Icon styles */
+        .icon {
+            margin-right: 10px;
+        }
+        /* Updated styles for authentic look of mess menu boxes */
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .edit-menu-button {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 4px;
+        }
+
+        .edit-menu-button:hover {
+            background-color: #7e57c2;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/admin/complaint"><span class="icon">📝</span>Complaints</a>
+            <a href="/admin/mess"><span class="icon">🍽️</span> Edit Mess</a>
+            <a href="/admin/view"><span class="icon">🔍</span>View Students</a>
+            <a href="/admin/payment"><span class="icon">💰</span>View Payments</a>
+            <a href="/admin/notice"><span class="icon">📢</span>Add Notices</a>
+            <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+            <h1>Hostel Manager (Admin)</h1>
+            <br><br><br>
+            <form action="/admin/mess" method="POST">
+                <label for="meal-day">Select Day:</label>
+                <br><br>
+                <select name="mealDay" id="meal-type">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <label for="meal-type">Select Meal Type:</label>
+                <br><br>
+                <select name="mealType" id="meal-type">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                </select>
+                <label for="menu-items">Edit Menu Items:</label>
+                <br><br>
+                <textarea name="menuItems" id="menu-items" rows="4" placeholder="Enter new menu items here..."></textarea>
+                <button type="submit" class="edit-menu-button">Update Menu</button>
+            </form>
+            <br><br>
+            <p><%= locals.message %></p>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

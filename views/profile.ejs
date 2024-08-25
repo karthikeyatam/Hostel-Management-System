@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #eaeaea; /* Soft background color */
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-card {
+            width: 80%; /* Responsive width */
+            max-width: 350px; /* Maximum width */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            /* Increase the card height */
+            height: auto; /* Adjusted for content */
+            padding-bottom: 40px; /* More space at the bottom */
+        }
+        .profile-card:hover {
+            transform: translateY(-10px); /* Hover effect */
+        }
+        .profile-card img {
+            width: 120px; /* Increased profile image size */
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-card h1 {
+            font-size: 30px; /* Increased font size */
+            margin-bottom: 10px;
+        }
+        .profile-card p {
+            font-size: 18px; /* Increased font size for paragraph */
+            margin: 10px 0;
+        }
+        /* Responsive design for larger screens */
+        @media (min-width: 768px) {
+            .profile-card {
+                max-width: 450px; /* Larger card for bigger screens */
+            }
+            .profile-card img {
+                width: 150px; /* Larger profile image for bigger screens */
+                height: 150px;
+            }
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #5b3c88;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #5b3c88;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #f3f3f3;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="profile-card">
+        <img src="/boy.png" width="100px" height="100px">
+        <h1><%= user.Fullname %></h1>
+        <h1>Hostel :<%= user.Hostel %></h1>
+        <p><i class="fas fa-graduation-cap"></i><b> Year</b> :<%= user.year %></p>
+        <p><i class="fas fa-building"></i><b> Room Number</b> : <%= user.Room_no %></p>
+        <p><i class="fas fa-code-branch"></i> <b> Branch</b>: <%= user.Branch %></p>
+        <p><i class="fas fa-phone"></i> <b> Phone</b>: <%= user.phone %></p>
+        <p><i class="fas fa-email"></i> <b> Email</b>: <%= user.email %></p>
+    </div>
+    <button class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+</body>
+</html>

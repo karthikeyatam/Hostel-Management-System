@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        .btn{
+            background-color:  #5b3c88;
+            width: fit-content;
+            height: max-content;
+            color: whitesmoke;
+        }
+        .btn:hover{
+            background-color: #8441cb;
+            width: fit-content;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-light py-3 py-md-5">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+
+                        <!-- Flash messages (conditionally render only when they exist) -->
+                        <% if (errorMessage && errorMessage.length > 0) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= errorMessage %>
+                            </div>
+                        <% } %>
+                        
+                        <% if (successMessage && successMessage.length > 0) { %>
+                            <div class="alert alert-success" role="alert">
+                                <%= successMessage %>
+                            </div>
+                        <% } %>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-5">
+                                    <h2 class="h3">Reset Password</h2>
+                                    <h3 class="fs-6 fw-normal text-secondary m-0">Provide the email address associated with your account to recover your password.</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form for password reset -->
+                        <form action="/support" method="POST">
+                            <div class="row gy-3 gy-md-4 overflow-hidden">
+                                <div class="col-12">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="password_reset" class="form-label">New Password <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="password_reset" id="password_reset" placeholder="Password" required>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button class="btn" type="submit">Reset Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <hr class="mt-5 mb-4 border-secondary-subtle">
+                                <div class="d-flex gap-4 justify-content-end">
+                                    <a href="/" class="link-secondary text-decoration-none">Home</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

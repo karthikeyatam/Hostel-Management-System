@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+        }
+
+        /* Logout button styles */
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+      /* Icon styles */
+        .icon {
+            margin-right: 10px;
+        }
+        textarea {
+    width: 80%; /* Smaller width */
+    height: 150px; /* Taller height */
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px; /* Rounded edges */
+}
+        /* Add styles for the submit button */
+        .submit-button {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 10px;
+        }
+        .submit-button:hover {
+            background-color: #7e57c2;
+        }
+        .complaint-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            width: calc(100% - 40px); /* Full width cards */
+            margin: 20px auto; /* Center cards */
+        }
+
+        .complaint-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .complaint-text {
+            margin-bottom: 20px;
+        }
+
+        .complaint-status {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/student/complaint"><span class="icon">📝</span> Complaints</a>
+            <a href="/student/mess"><span class="icon">🍽️</span> Mess</a>
+            <a href="/student/payment"><span class="icon">💰</span> Pay Fees</a>
+            <a href="/student/notice"><span class="icon">📢</span> Notices</a>
+            <a href="/student/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+            <h2>Complaints</h2>
+            <form action="/student/complaint" method="POST">
+                <textarea name="complaint" rows="4" cols="50" placeholder="Write your complaint here..." required></textarea>
+                <br>
+                <button type="submit" class="submit-button">Submit Complaint</button>
+            </form>
+            <br><br><br>
+            <h2>Resolved Complaints: </h2>
+            <% complaint.forEach(function(complaint) { %>
+                <div class="complaint-card">
+                    <div class="complaint-title">Complaint ID: <%= complaint.admin_id %></div>
+                    <div class="complaint-text"><%= complaint.text %></div>
+                    <div class="complaint-status">Status: Resolved</div>
+                </div>
+            <% }); %>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

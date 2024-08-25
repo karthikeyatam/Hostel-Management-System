@@ -1,0 +1,18 @@
+_id,username,password,year,Branch,Room_no,Fullname,phone,Hostel,email
+665ffc3b5e08491cb44b267d,student1,pass1,First,Computer Science,101,Alice Johnson,123-456-7890,A,alice.johnson@university.edu
+665ffc3b5e08491cb44b267e,student2,pass2,Second,Mechanical Engineering,102,Bob Smith,123-456-7891,D,bob.smith@university.edu
+665ffc3b5e08491cb44b267f,student3,pass3,Third,Electrical Engineering,103,Charlie Brown,123-456-7892,C,charlie.brown@university.edu
+665ffc3b5e08491cb44b2680,student4,pass4,Fourth,Civil Engineering,104,David Wilson,123-456-7893,D,david.wilson@university.edu
+665ffc3b5e08491cb44b2681,student5,pass5,First,Computer Science,105,Eve Davis,123-456-7894,A,eve.davis@university.edu
+665ffc3b5e08491cb44b2682,student6,pass6,Second,Mechanical Engineering,106,Frank Moore,123-456-7895,B,frank.moore@university.edu
+665ffc3b5e08491cb44b2683,student7,pass7,Third,Electrical Engineering,107,Grace Lee,123-456-7896,C,grace.lee@university.edu
+665ffc3b5e08491cb44b2684,student8,pass8,Fourth,Civil Engineering,108,Hannah Walker,123-456-7897,D,hannah.walker@university.edu
+665ffc3b5e08491cb44b2685,student9,pass9,First,Computer Science,109,Ian Hall,123-456-7898,A,ian.hall@university.edu
+665ffc3b5e08491cb44b2686,student10,pass10,Second,Mechanical Engineering,110,Jane Adams,123-456-7899,B,jane.adams@university.edu
+665ffc3b5e08491cb44b2687,student11,pass11,Third,Electrical Engineering,111,Kevin Wright,123-456-7800,C,kevin.wright@university.edu
+665ffc3b5e08491cb44b2688,student12,pass12,Fourth,Civil Engineering,112,Laura King,123-456-7801,D,laura.king@university.edu
+665ffc3b5e08491cb44b2689,student13,pass13,First,Computer Science,113,Mike Scott,123-456-7802,A,mike.scott@university.edu
+665ffc3b5e08491cb44b268a,student14,pass14,Second,Mechanical Engineering,114,Nina Young,123-456-7803,B,nina.young@university.edu
+665ffc3b5e08491cb44b268b,student15,pass15,Third,Electrical Engineering,115,Oscar Martin,123-456-7804,C,oscar.martin@university.edu
+665ffc3b5e08491cb44b268c,student16,pass16,Fourth,Civil Engineering,116,Paula Lewis,123-456-7805,D,paula.lewis@university.edu
+665ffc3b5e08491cb44b268e,student18,pass18,Second,Mechanical Engineering,118,Rachel Clark,123-456-7807,B,rachel.clark@university.edu

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .login-container {
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    position: relative;
+  }
+  .login-container h2 {
+    color: #5b3c88;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .form-group {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .form-group label {
+    display: block;
+    color: #333;
+    margin-bottom: .5rem;
+  }
+  .form-group input {
+    width: calc(100% - 2.5rem);
+    padding: .75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding-left: 2.5rem;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: #5b3c88;
+  }
+  .form-group i {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    color: #5b3c88;
+  }
+  .login-container button {
+    width: 100%;
+    padding: .85rem;
+    border: none;
+    background-color: #5b3c88;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    position: relative;
+  }
+  .login-container button:hover {
+    background-color: #4a3170;
+  }
+  .back-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    color: #5b3c88;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #5b3c88;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: #f3f3f3;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #5b3c88;
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Student Login</h2>
+    <form id="loginForm" action="/student" method="POST" onsubmit="showLoading(event)">
+      <div class="form-group">
+        <i class="fas fa-user"></i>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <i class="fas fa-lock"></i>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" id="loginButton">Log In</button>
+      <div class="spinner" id="spinner">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showLoading(event) {
+      event.preventDefault(); 
+      document.getElementById('spinner').style.display = 'block';
+      document.getElementById('loginButton').disabled = true;
+
+      setTimeout(() => {
+       
+        document.getElementById('loginForm').submit();
+      }, 2000); 
+    }
+  </script>
+  <a href="/" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+</body>
+</html>

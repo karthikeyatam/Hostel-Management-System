@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+            position: fixed; /* Make sidebar fixed */
+            height: 100vh; /* Full height */
+            overflow-y: auto; /* Enable scrolling if content is too long */
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+        }
+
+        /* Logout button styles */
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+
+        /* Icon styles */
+        .icon {
+            margin-right: 10px;
+        }
+        .main-content {
+            margin-left: 250px; /* Same as sidebar width */
+        }
+
+        /* Updated styles for authentic look of mess menu boxes */
+        .menu-box {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-box:hover {
+            transform: translateY(-5px); /* Slight lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-title {
+            font-size: 1.5em; /* Larger title font size */
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center; /* Center-align the title */
+            font-weight: bold; /* Bold title font */
+        }
+
+        .menu-list {
+            list-style-type: none; /* Remove list bullets */
+            padding: 0;
+            text-align: left; /* Align list items to left */
+        }
+
+        .menu-list li {
+            padding: 8px 0; /* Add padding to list items */
+            border-bottom: 1px solid #eee; /* Add a separator line */
+        }
+
+        .menu-list li:last-child {
+            border-bottom: none; /* Remove bottom border for last item */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/student/complaint"><span class="icon">📝</span> Complaints</a>
+            <a href="/student/mess"><span class="icon">🍽️</span> Mess</a>
+            <a href="/student/payment"><span class="icon">💰</span> Pay Fees</a>
+            <a href="/student/notice"><span class="icon">📢</span> Notices</a>
+            <a href="/student/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+            <h2>Day Wise Mess Menus</h2>
+            <% if (messMenus) { %>
+                <% messMenus.forEach(function(menu) { %>
+                    <div class="menu-box">
+                        <h3 class="menu-title"><%= menu.day %></h3>
+                        <ul class="menu-list">
+                            <li><strong>Breakfast:</strong> <%= menu.breakfast %></li>
+                            <li><strong>Lunch:</strong> <%= menu.Lunch %></li>
+                            <li><strong>Dinner:</strong> <%= menu.Dinner %></li>
+                        </ul>
+                    </div>
+                <% }); %>
+            <% } 
+            else { %>
+                <p>No mess menus available.</p>
+            <% } %>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>

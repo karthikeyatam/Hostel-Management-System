@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+        }
+
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+        .complaint-box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        width: 80%; /* Wider boxes */
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add shadow for depth */
+    }
+
+    .complaint-info {
+        margin-bottom: 15px; /* Spacing between info */
+    }
+
+    .resolved-button {
+        background-color: #6a1b9a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .resolved-button:hover {
+        background-color: #7e57c2;
+    }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/admin/complaint"><span class="icon">📝</span>Complaints</a>
+            <a href="/admin/mess"><span class="icon">🍽️</span> Edit Mess</a>
+            <a href="/admin/view"><span class="icon">🔍</span>View Students</a>
+            <a href="/admin/payment"><span class="icon">💰</span>View Payments</a>
+            <a href="/admin/notice"><span class="icon">📢</span>Add Notices</a>
+            <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+            Hostel Manager(Admin)
+            <br><br><br>
+            <h2>Complaints Received: -</h2>
+            <br><br><br>
+            <% if(complaint) { %>
+                <% complaint.forEach(function(complaint) { %>
+                    <div class="complaint-box">
+                        <div class="complaint-info">
+                            <p><strong>Complaint ID:</strong> <%= complaint.user_id %></p>
+                            <p><strong>Room No:</strong> <%= complaint.room_num %></p>
+                            <p><strong>Description:</strong> <%= complaint.complaint %></p>
+                        </div>
+                        <form action="/admin/complaint" method="POST">
+                            <input type="hidden" name="complaintId" value="<%= complaint._id %>">
+                            <button type="submit" class="resolved-button">Resolved</button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% }
+             else { %>
+                <h1>No complaints to display!</h1>
+            <% } %>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hostel Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+  }
+  .navbar {
+    background-color: #5b3c88;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.7rem;
+  }
+  .navbar a:hover, .navbar a:focus {
+    background-color: #4a3170;
+  }
+  .brand-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .navbar-links {
+    display: flex;
+  }
+  .navbar-links {
+    display: flex;
+    align-items: center; 
+  }
+  .hero {
+    height: 100vh;
+    background: linear-gradient(180deg, #e1eaff, #e1ffea22 60%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 80px;
+    line-height: 1;
+  }
+  .heading {
+    margin-left: 0;
+  }
+  .heading p {
+    color: #000;
+    font-size: 50px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .heading2 {
+    margin-left: 0;
+  }
+  .desc {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #000;
+    font-size: 25px;
+    margin-bottom: 5px;
+    /* font-weight: 500; */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 0;
+    width: 100%;
+    line-height: 1.2;
+  }
+  /* .dropbtn{
+    margin-bottom: 100px;
+  } */
+  .hero-left button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: 150px;
+    height: 60px;
+    /* border: solid 6px #855ebe; */
+    background-color: #5b3c88;
+    color: #e1eaff;
+    margin-top: 5px;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 0;
+    /* border: none; */
+    
+  }
+  .hero-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-right img {
+    margin-top: -40px;
+    margin-right: 70px;
+    border-radius: 30%;
+    border: 3px;
+    height: 450px;
+    width: 80%;
+  }
+  .footer {
+    background-color: #5b3c88;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+  }
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown:hover .dropbtn {
+    background-color: #4a3170;
+  }
+  .special{
+    color: #621bcd;
+  }
+  .first{
+    font-size: 80px;
+  }
+  .conbtn{
+    text-decoration: none;
+    color:whitesmoke;
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand-title">Hostel Management System</div>
+    <div class="navbar-links">
+      <a href="#" class="active">Home</a>
+      <a href="/support">Support</a>
+      <a href="/gallery">Gallery</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Login</a>
+        <div class="dropdown-content">
+          <a href="/admin"> Admin</a>
+          <a href="/student">Student</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="heading">
+          <p><span class="first">E</span>xplore <span class="special"> Innovation</span> and</p>
+          <p class="heading2"><span class="special">Expertise</span> with us.</p>
+        </div>
+        <div class="desc">
+          <p>Efficiently manage students,Complaints, and handle maintenance for a seamless campus experience.</p>
+        </div>
+        <button class="btn" ><a class="conbtn" href="/contact">Contact Us</a></button>
+      </div>
+      <div class="hero-right">
+        <img src="home.jpg" alt="" width="100px">
+      </div>
+    </div>
+  </header>
+
+  <div class="footer">
+    © 2024 Company Name. All rights reserved.
+  </div>
+</body>
+</html>

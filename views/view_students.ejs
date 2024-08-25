@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .search-bar {
+            margin-bottom: 50px;
+            margin-top: -600px;
+            padding-top: -20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #7e57c2;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #6a1b9a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #5b3c88;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #5b3c88;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            background-color: #f3f3f3;
+        }
+
+        .back-button:hover {
+            background-color: #f3f3f3;
+        }
+        @media screen and (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            thead {
+                display: none;
+            }
+            tr {
+                margin-bottom: 10px;
+                display: block;
+                border-bottom: 2px solid #ddd;
+            }
+            td {
+                display: block;
+                text-align: right;
+                font-size: 13px;
+                border-bottom: 1px dotted #ccc;
+            }
+            td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            td:last-child {
+                border-bottom: 0;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .search-bar {
+                margin-top: 0;
+                padding-top: 0;
+                margin-bottom: 20px;
+            }
+            input[type="text"], button {
+                max-width: 300px; 
+            }
+            table {
+                width: 100%; 
+            }
+            th, td {
+                padding: 15px; 
+            }
+            .back-button {
+                position: fixed; 
+            }
+        }        
+        @media screen and (max-width: 768px) {
+            .search-bar {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 15px;
+            }
+            input[type="text"], button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by room number, phone number, or Branch">
+    </div>
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Room No</th>
+                <th>Phone</th>
+                <th>Hostel</th>
+                <th>Year</th>
+                <th>Branch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% students.forEach(student => { %>
+                <tr>
+                    <td data-label="Name"><%= student.Fullname %></td>
+                    <td data-label="Room No"><%= student.Room_no %></td>
+                    <td data-label="Phone"><%= student.phone %></td>
+                    <td data-label="Hostel"><%= student.Hostel %></td>
+                    <td data-label="Year"><%= student.year %></td>
+                    <td data-label="Branch"><%= student.Branch %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <button class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+
+    <script>
+        // Function to filter table based on search input
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#studentsTable tbody tr');
+            
+            rows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const room = row.cells[1].textContent.toLowerCase();
+                const phone = row.cells[2].textContent.toLowerCase();
+                const branch = row.cells[5].textContent.toLowerCase();
+                
+                if (name.includes(filter) || room.includes(filter) || phone.includes(filter) || branch.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

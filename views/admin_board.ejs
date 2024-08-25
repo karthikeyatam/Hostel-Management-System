@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Dashboard container */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a1b9a;
+            padding: 20px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            border-bottom: 1px solid #4a148c;
+        }
+        .sidebar a:hover {
+            background-color: #7e57c2;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #eee;
+        }
+
+        .logout-button {
+            background-color: #ab47bc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button:hover {
+            background-color: #ce93d8;
+        }
+        .icon {
+            margin-right: 10px;
+        }
+        .inventory {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1;
+            gap: 20px; /* Spacing between cards */
+            justify-content: center; /* Center cards in the container */
+            padding: 20px;
+        }
+
+        .inventory-item {
+            background-color: white; /* Card background */
+            border: none; /* Remove border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            width: 200px; /* Fixed card width */
+            text-align: center; /* Center text */
+        }
+
+        .inventory-title {
+            display: block; /* Make title a block element */
+            margin-bottom: 10px; /* Space below title */
+            font-weight: bold; /* Bold title */
+            color: #333; /* Title color */
+        }
+        .edit-button {
+            background-color: #6a1b9a; /* Green background */
+            color: white; /* White text */
+            padding: 8px 16px; /* Padding */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background 0.3s; /* Smooth background transition */
+            margin-top: 10px; /* Space above the button */
+        }
+
+        .edit-button:hover {
+            background-color: #7e57c2; /* Lighter green on hover */
+        }
+        .add-inventory-form {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-inventory-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-inventory-form input[type="text"],
+.add-inventory-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-inventory-form input[type="submit"] {
+    width: auto;
+    cursor: pointer;
+}
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.add-inventory-form-container {
+    flex: 1; /* Allows form container to grow and fill available space */
+    margin-left: 20px; /* Adds space between the inventory and the form */
+    margin-right:30px;
+    margin-bottom: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <a href="/admin/complaint"><span class="icon">📝</span>Complaints</a>
+            <a href="/admin/mess"><span class="icon">🍽️</span> Edit Mess</a>
+            <a href="/admin/view"><span class="icon">🔍</span>View Students</a>
+            <a href="/admin/payment"><span class="icon">💰</span>View Payments</a>
+            <a href="/admin/notice"><span class="icon">📢</span>Add Notices</a>
+            <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
+        </div>
+        <div class="main-content">
+          <h2>  Hostel Manager(Admin)</h2>
+            <br><br><br>
+            <div class="content-flex-container">
+                <div class="inventory">
+               
+                    <div class="inventory-item">
+                        <span class="inventory-title">Beds:</span>
+                        <span>50</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Chairs:</span>
+                        <span>100</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Rooms:</span>
+                        <span>25</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                    <br>
+                    <div class="inventory-item">
+                        <span class="inventory-title">Visitors Today:</span>
+                        <span>5</span><br>
+                        <button class="edit-button">Edit</button>
+                    </div>
+                </div>
+                <div class="add-inventory-form-container">
+                    <h2>Order New Inventory</h2>
+                    <form action="/admin/addinventory" method="POST" class="add-inventory-form">
+                        <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" name="itemName" required><br><br>
+                    
+                    <label for="item-quantity">Quantity:</label>
+                    <input type="number" id="item-quantity" name="itemQuantity" required><br><br>
+                    
+                    <input type="submit" value="Place Order" class="edit-button">
+                    </form>
+                </div>
+            </div>
+                <!-- ... other main content ... -->
+            </div>
+        </div>
+        <form action="/logout" method="POST">
+          <button class="logout-button">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
