@@ -1,6 +1,6 @@
 # Hostel Management System
 
-This project is a comprehensive software solution designed to manage various activities within a hostel environment. The system is built using a full-stack approach, utilizing modern frameworks and technologies like MongoDB, Express.js, React.js, and Node.js (MERN stack). It provides both administrative and student panels with functionalities tailored to streamline hostel operations.
+This project is a comprehensive software solution designed to manage various activities within a hostel environment. The system is built using a full-stack approach, utilizing modern frameworks and technologies like MongoDB, Express.js,EJS, and Node.js. It provides both administrative and student panels with functionalities tailored to streamline hostel operations.
 
 ## Features
 
