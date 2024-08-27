@@ -55,7 +55,7 @@ To set up the Hostel Management System locally, follow these steps:
     - Create a `.env` file in the root directory.
     - Add the following variables:
     ```env
-    ```
+    ```MONGO_URL=ABCDEF/////
 5. Start the application:
     ```bash
     npm start
