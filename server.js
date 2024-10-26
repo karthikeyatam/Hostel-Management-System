@@ -84,7 +84,7 @@ const complaint_schema=mongoose.Schema({
   user_id:mongoose.Schema.Types.ObjectId,
   room_num:String,
   complaint:String,
-  date:Date,
+  date:Date
 })
 
 const mess_schema=mongoose.Schema({
@@ -119,7 +119,11 @@ const resolved_schema=mongoose.Schema({
 const order_schema=mongoose.Schema({
   admin_id:mongoose.Schema.Types.ObjectId,
   item:String,
-  quantity:String
+  quantity:String,
+  ordered:{
+    type: Date,
+    default: Date.now
+  }
 })
 
 const event_schema=mongoose.Schema({
@@ -138,7 +142,7 @@ const Notice=mongoose.model('Notice',notice_schema)
 const Payment=mongoose.model('Payment',payment_schema)
 const Resolved=mongoose.model("Resolved",resolved_schema)
 const Order=mongoose.model('Order',order_schema)
-const Events=mongoose.model('Events',event_schema)
+
 //multer Configuration
 //Memory Storage
 // Set storage engine to memory storage
@@ -160,10 +164,14 @@ app.post('/admin',async(req,res)=>{
   const user=await Admin.findOne({username:name,password:pass});
     if(user){
         req.session.user = user;
-        await Complaints.find().then((data)=>{
-          res.render('admin_board',{complaint:data})
-        })
+        try {
+          const orders = await Order.find().sort({ orderedOn: -1 }); 
+          res.render('admin_board', { orders });
+          } 
+        catch (error) {
+          res.status(500).send('Error retrieving orders');
      }
+    }
      else{
         res.redirect('/admin')
      }
@@ -398,9 +406,11 @@ app.get('/admin/view', async (req, res) => {
 app.post('/admin/addinventory',isAuthenticated,async(req,res)=>{
      const new_order=new Order({
         item:req.body.itemName,
-        quantity:req.body.itemQuantity
+        quantity:req.body.itemQuantity,
+        ordered:new Date()
      })
      new_order.save();
+     res.redirect('/admin/complaint')
 })
 
 //admin add notice route
