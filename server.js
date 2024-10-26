@@ -24,7 +24,7 @@ app.use(express.static('views'));
 
 //sessions store
 const store = new MongoDBStore({
-    uri: 'mongodb://127.0.0.1:27017/Hostel_db',
+    uri: process.env.MONGO_URL,
     collection: 'mySessions'
   });
   app.use(session({
