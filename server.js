@@ -20,11 +20,11 @@ require('dotenv').config()
 app.set('view engine','ejs')
 app.use(express.json())
 app.use(bodyparser.urlencoded({extended: false}))
-app.use(express.static('views'));
+app.use(express.static('views')); 
 
 //sessions store
 const store = new MongoDBStore({
-    uri: process.env.MONGO_URL,
+    uri: 'mongodb://127.0.0.1:27017/Hostel_db',
     collection: 'mySessions'
   });
   app.use(session({
@@ -122,6 +122,13 @@ const order_schema=mongoose.Schema({
   quantity:String
 })
 
+const event_schema=mongoose.Schema({
+  admin_id:mongoose.Schema.Types.ObjectId,
+  name:String,
+  description:String,
+  Date:Date
+})
+
 //creating models
 const Student=mongoose.model('Student',student_schema)
 const Admin=mongoose.model('Admin',admin_schema)
@@ -131,7 +138,7 @@ const Notice=mongoose.model('Notice',notice_schema)
 const Payment=mongoose.model('Payment',payment_schema)
 const Resolved=mongoose.model("Resolved",resolved_schema)
 const Order=mongoose.model('Order',order_schema)
-
+const Events=mongoose.model('Events',event_schema)
 //multer Configuration
 //Memory Storage
 // Set storage engine to memory storage
@@ -205,7 +212,7 @@ app.get('/admin/profile',isAuthenticated,async(req,res)=>{
   })
 })
 
-//student complaints
+//student complaints route
 app.get('/student/complaint',isAuthenticated,async(req,res)=>{
    await Resolved.find({user_id:req.session.user._id}).then((data)=>{
     res.render('complaints',{complaint:data})
@@ -281,7 +288,7 @@ app.post('/student/payment', isAuthenticated,async(req, res) => {
       });
       await new_pay.save()
 
-    //for sending the student the payment invoice
+    //for sending payment invoice (download)
       const content = {
         user_id:user_id,
         fullname: fullname,
