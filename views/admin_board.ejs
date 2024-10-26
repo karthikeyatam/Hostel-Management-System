@@ -140,6 +140,89 @@
     margin-right:30px;
     margin-bottom: 5px;
 }
+/* Event Management Section */
+.event-management {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-form {
+    margin-bottom: 30px;
+}
+
+.event-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.event-form input[type="submit"] {
+    background-color: #6a1b9a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.event-form input[type="submit"]:hover {
+    background-color: #7e57c2;
+}
+
+/* Event List */
+.event-list {
+    margin-top: 20px;
+}
+
+.event-list h3 {
+    margin-bottom: 10px;
+}
+
+.event-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.event-list li {
+    background-color: #f4f4f9;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.event-list li strong {
+    font-size: 18px;
+}
+
+.event-list li span {
+    display: block;
+    margin-top: 5px;
+}
+
+/* Calendar Section */
+.calendar-container {
+    margin-top: 40px;
+}
+
+.calendar-container iframe {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
     </style>
 </head>
 <body>
@@ -153,50 +236,51 @@
             <a href="/admin/profile"><span class="icon">👤</span> Profile</a>
         </div>
         <div class="main-content">
-          <h2>  Hostel Manager(Admin)</h2>
-            <br><br><br>
+            <h3>Hostel Manager (Admin)</h3>
             <div class="content-flex-container">
-                <div class="inventory">
-               
-                    <div class="inventory-item">
-                        <span class="inventory-title">Beds:</span>
-                        <span>50</span><br>
-                        <button class="edit-button">Edit</button>
+                <div class="event-management">
+                    <h2>Event Management & Calendar</h2>
+                    <!-- Event Creation Form -->
+                    <form action="/admin/add-event" method="POST" class="event-form">
+                        <label for="event-name">Event Name:</label>
+                        <input type="text" id="event-name" name="eventName" required><br><br>
+                
+                        <label for="event-date">Event Date:</label>
+                        <input type="date" id="event-date" name="eventDate" required><br><br>
+                
+                        <label for="event-description">Event Description:</label>
+                        <textarea id="event-description" name="eventDescription" rows="4" required></textarea><br><br>
+                
+                        <input type="submit" value="Create Event" class="edit-button">
+                    </form>
+                
+                    <!-- Event List -->
+                    <div class="event-list">
+                        <h3>Upcoming Events:</h3>
+
+                        </ul>
                     </div>
-                    <br>
-                    <div class="inventory-item">
-                        <span class="inventory-title">Chairs:</span>
-                        <span>100</span><br>
-                        <button class="edit-button">Edit</button>
-                    </div>
-                    <br>
-                    <div class="inventory-item">
-                        <span class="inventory-title">Rooms:</span>
-                        <span>25</span><br>
-                        <button class="edit-button">Edit</button>
-                    </div>
-                    <br>
-                    <div class="inventory-item">
-                        <span class="inventory-title">Visitors Today:</span>
-                        <span>5</span><br>
-                        <button class="edit-button">Edit</button>
-                    </div>
+                
+                    <!-- Calendar Section -->
+                    
                 </div>
+                
+                <!-- Add Inventory Form Section -->
                 <div class="add-inventory-form-container">
                     <h2>Order New Inventory</h2>
                     <form action="/admin/addinventory" method="POST" class="add-inventory-form">
                         <label for="item-name">Item Name:</label>
-                    <input type="text" id="item-name" name="itemName" required><br><br>
-                    
-                    <label for="item-quantity">Quantity:</label>
-                    <input type="number" id="item-quantity" name="itemQuantity" required><br><br>
-                    
-                    <input type="submit" value="Place Order" class="edit-button">
+                        <input type="text" id="item-name" name="itemName" required><br>
+        
+                        <label for="item-quantity">Quantity:</label>
+                        <input type="number" id="item-quantity" name="itemQuantity" required><br>
+        
+                        <input type="submit" value="Place Order" class="edit-button">
                     </form>
                 </div>
             </div>
-                <!-- ... other main content ... -->
-            </div>
+        </div>
+        >
         </div>
         <form action="/logout" method="POST">
           <button class="logout-button">Logout</button>
